@@ -11,3 +11,4 @@ use \Api\Api;
  * le flux RSS qui récupère les Patch notes et la BDD.
  */
 class News {
+}
