@@ -34,7 +34,7 @@ class Mail {
             $mail->isSMTP();
             $mail->SMTPDebug = 2; 
             $mail->CharSet  = 'utf-8';
-            $mail->Host = 'estrilion.fr';
+            $mail->Host = 'patperdue.fr';
             $mail->Port = 465;
             $mail->SMTPSecure = 'ssl'; 
             $mail->SMTPAuth = true;
