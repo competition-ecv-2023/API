@@ -4,7 +4,7 @@
 
 # Installation
 
-Il vous faudra **Composer** afin de démarrer le projet.
+Il vous faudra **Composer** afin de démarrer le projet.<br>
 Si vous avez Composer, il vous faudra effectuer cette commande à la racine du projet pour installer les dépendances : `composer install`
 
 ---
