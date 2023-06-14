@@ -20,12 +20,21 @@ if ($apiToken === $headerToken) {
     if (isset($_GET) && !empty($_GET)) {
         if (isset($_GET["page"]) && $_GET['page'] == "swagger") {
             if($_GET['page'] == "swagger") {
+            } else {
+                header("HTTP/1.1 404 Not Found");
             }
         } else if (isset($_GET["api"]) && in_array($request_method, $allowed_methods)) {
             if(file_exists($_SERVER['DOCUMENT_ROOT'].'/v1/routes/'.$request_method.'/'.$_GET['api'].'.php')) {
                 require $_SERVER['DOCUMENT_ROOT'].'/v1/routes/'.$request_method.'/'.$_GET['api'].'.php';
+            } else {
+                header("HTTP/1.1 404 Not Found");
             }
+        } else {
+            header("HTTP/1.1 404 Not Found");
         }
+    } else {
+        header("HTTP/1.1 404 Not Found");
     }
+} else {
+    header("HTTP/1.1 403 Forbidden");
 }
-header("HTTP/1.1 404 Not Found");

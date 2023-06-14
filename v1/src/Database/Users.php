@@ -421,7 +421,7 @@ class Users {
                 return 2; // Erreur de la base de données
             }
             isset($data["username"]) ? $usernameDatabase = $data["username"] : $usernameDatabase = "";
-            if (((isset($usernameDatabase) && !empty($usernameDatabase)) || strtolower($username) == strtolower($usernameDatabase)) && (isset($is_verified) && $is_verified == 1)) {
+            if (((isset($usernameDatabase) && !empty($usernameDatabase)) || strtolower($username) == strtolower($usernameDatabase))) {
                 return 8; // Le nom d'utilisateur est déjà utilisé
             }
 
@@ -434,7 +434,7 @@ class Users {
             $emailParams = array(
                 'verification_code_email' => $verification_code_email
             );
-            Mail::sendEmail($email, "", $emailTemplate, $emailParams);
+            // Mail::sendEmail($email, "", $emailTemplate, $emailParams);
 
             if (isset($is_verified)) { // Si une adresse email est déjà associée à un compte mais que le compte n'est pas vérifié
                 // Modifie le compte avec les nouvelles données pour le "re-créer"
@@ -670,7 +670,7 @@ class Users {
                 $emailParams = array(
                     'verification_code_email' => $verification_code_email
                 );
-                Mail::sendEmail($email, "", $emailTemplate, $emailParams);
+                // Mail::sendEmail($email, "", $emailTemplate, $emailParams);
                 return 0; // Code de vérification généré et envoyé avec succès
             } else {
                 return 2; // Erreur de SQLManager ou de la requête SQL

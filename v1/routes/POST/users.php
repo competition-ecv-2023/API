@@ -3,14 +3,14 @@ include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/Users.php';
 use \Database\Users;
 
 // Create users
-if (!isset($_POST['user_id'])) {
+if (!isset($_GET['user_id'])) {
     if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['passwordToVerify']) && isset($_POST['email'])) {
 
         switch(Users::register($_POST['username'], $_POST['password'], $_POST['passwordToVerify'], $_POST['email'])) {
             case 0:
                 // Register done
                 header("HTTP/1.1 200 OK");
-                header("X-Message: Compte créé");
+                header("X-Message: Compte cree");
                 break;
             case 1:
                 // Exception
@@ -45,7 +45,7 @@ if (!isset($_POST['user_id'])) {
             case 7:
                 // Email already used
                 header("HTTP/1.1 409 Conflict");
-                header("X-Error-Message: L'adresse email est déjà utilisée par un autre compte");
+                header("X-Error-Message: L'adresse email est deja utiliee par un autre compte");
                 break;
             case 8:
                 // Username already used
