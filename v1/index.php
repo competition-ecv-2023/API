@@ -1,7 +1,6 @@
 <?php
 require 'vendor/autoload.php';
 require 'v1/config/settings.php';
-require 'v1/src/Api/ApiHandler.php';
 
 use Api\ApiHandler;
 
@@ -20,9 +19,11 @@ if (isset($_GET) && !empty($_GET)) {
         case "api":
             if (!in_array($request_method, $allowed_methods)) {
                 header("HTTP/1.1 404 Not Found");
-            } else {
-                ApiHandler::handler($request_method, $_GET['api']);
+            } else if(file_exists($_SERVER['DOCUMENT_ROOT'].'/v1/routes/'.$request_method.'/'.$_GET['API'].'.php')) {
+                require $_SERVER['DOCUMENT_ROOT'].'/v1/routes/'.$request_method.'/'.$_GET['API'].'.php';
             }
             break;
     }
+} else {
+    header("HTTP/1.1 404 Not Found");
 }

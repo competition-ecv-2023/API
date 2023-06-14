@@ -3,10 +3,10 @@ namespace Database;
 use \PDO;
 use \Exception;
 
-include $_SERVER['DOCUMENT_ROOT'].'/src/Database/SQLManager.php';
+include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/SQLManager.php';
 use \Database\SQLManager;
 
-include $_SERVER['DOCUMENT_ROOT'].'/src/Mail/Mail.php';
+include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Mail/Mail.php';
 use \Mail\Mail;
 
 /**
