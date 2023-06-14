@@ -7,9 +7,9 @@
 -- ### GROUPES #####################################################################
 
 -- Table groups --
-DROP TABLE IF EXISTS groups;
+DROP TABLE IF EXISTS `groups`;
 
-CREATE TABLE groups (
+CREATE TABLE `groups` (
     id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(20) NOT NULL
 );
@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS groups_permissions;
 
 CREATE TABLE groups_permissions (
 	group_id INTEGER NOT NULL,
-    FOREIGN KEY (group_id) REFERENCES groups(id),
+    FOREIGN KEY (group_id) REFERENCES `groups`(id),
 	permission_id INTEGER NOT NULL,
     FOREIGN KEY (permission_id) REFERENCES permissions(id)
 );
@@ -47,7 +47,7 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     email VARCHAR(150) NOT NULL,
 	group_id INTEGER NOT NULL DEFAULT 1,
-    FOREIGN KEY (group_id) REFERENCES groups(id),
+    FOREIGN KEY (group_id) REFERENCES `groups`(id),
     verification_code_email VARCHAR(6),
     is_verified TINYINT(1) DEFAULT 0 NOT NULL,
     token VARCHAR(120),
