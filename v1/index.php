@@ -6,6 +6,7 @@ use Api\ApiHandler;
 
 $request_method = $_SERVER["REQUEST_METHOD"]; //GET, POST, PUT, DELETE, etc...
 
+$headerToken = '';
 // Vérification du bearer token
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     $authorizationHeader = $_SERVER['HTTP_AUTHORIZATION'];
@@ -13,8 +14,6 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
         // Pour obtenir seulement le token
         $headerToken = substr($authorizationHeader, 7);
     }
-} else {
-    $headerToken = '';
 }
 
 $allowed_methods = ["GET", "POST", "PUT", "DELETE"];
