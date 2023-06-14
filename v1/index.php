@@ -1,10 +1,28 @@
 <?php
-require '/vendor/autoload.php';
-require '/v1/config/settings.php';
-require '/v1/src/Api/Api.php';
+require 'vendor/autoload.php';
+require 'v1/config/settings.php';
+require 'v1/src/Api/ApiHandler.php';
 
-$app = new Api\Api();
+use Api\ApiHandler;
 
-require 'api/v1/routes/routes.php';
+$request_method = $_SERVER["REQUEST_METHOD"]; //GET, POST, PUT, DELETE, etc...
+$allowed_methods = ["GET", "POST", "PUT", "DELETE"];
 
-$app->run();
+if (isset($_GET) && !empty($_GET)) {
+    switch($_GET) {
+        case "page":
+                if($_GET['page'] == "swagger") {
+
+                } else {
+                    header("HTTP/1.1 404 Not Found");
+                }
+            break;
+        case "api":
+            if (!in_array($request_method, $allowed_methods)) {
+                header("HTTP/1.1 404 Not Found");
+            } else {
+                ApiHandler::handler($request_method, $_GET['api']);
+            }
+            break;
+    }
+}

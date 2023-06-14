@@ -1,2 +1,2 @@
 <?php
-require("./api/v1/index.php");
+require("v1/index.php");

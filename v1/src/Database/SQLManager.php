@@ -2,7 +2,7 @@
 namespace Database;
 use \PDO;
 
-include $_SERVER['DOCUMENT_ROOT'].'/src/Database/DatabaseHandler.php';
+include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/DatabaseHandler.php';
 use \Database\DatabaseHandler;
 use Exception;
 

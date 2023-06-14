@@ -1,0 +1,23 @@
+RewriteEngine On
+
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+
+RewriteCond %{HTTP:VIA}                 !^$ [OR]
+RewriteCond %{HTTP:FORWARDED}           !^$ [OR]
+RewriteCond %{HTTP:USERAGENT_VIA}       !^$ [OR]
+RewriteCond %{HTTP:X_FORWARDED_FOR}     !^$ [OR]
+RewriteCond %{HTTP:PROXY_CONNECTION}    !^$ [OR]
+RewriteCond %{HTTP:XPROXY_CONNECTION}   !^$ [OR]
+RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
+RewriteCond %{HTTP:HTTP_CLIENT_IP}      !^$
+RewriteRule ^(.*)$ - [F]
+
+RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
+Options -Indexes
+
+RewriteRule ^v1$ index.php?page=swagger [L]
+RewriteRule ^v1/users$ index.php?api=users [L]
+RewriteRule ^v1/users/([0-9]+)$ index.php?api=users&user_id=$1 [L]
+RewriteRule ^composer.json$ - [R=404,L]
+RewriteRule ^composer.lock$ - [R=404,L]
+RewriteRule ^.gitignore$ ^erreur - [R=404,L]
