@@ -5,7 +5,15 @@ require 'v1/config/settings.php';
 use Api\ApiHandler;
 
 $request_method = $_SERVER["REQUEST_METHOD"]; //GET, POST, PUT, DELETE, etc...
-$headerToken = isset($_SERVER['HTTP_AUTHORIZATION']) ? $_SERVER['HTTP_AUTHORIZATION'] : '';
+
+// Vérification du bearer token
+if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+    $authorizationHeader = $_SERVER['HTTP_AUTHORIZATION'];
+    if (strpos($authorizationHeader, 'Bearer') === 0) {
+        // Pour obtenir seulement le token
+        $headerToken = substr($authorizationHeader, 7);
+    }
+}
 $allowed_methods = ["GET", "POST", "PUT", "DELETE"];
 
 if ($apiToken === $headerToken) {
