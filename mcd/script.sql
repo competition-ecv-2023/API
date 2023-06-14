@@ -1,6 +1,5 @@
--- ## Fichier crée le 19/08/2022 - dernière modification le 07/05/2023
--- ## Afin d'accéder au MLD ou au MCD demandez à Dancuo Lohan | dancuo.lohan@gmail.com
--- ## SQL pour la base de données MySQL du site estrilion.fr
+-- ## Fichier crée le 14/06/2023 - dernière modification le 14/06/2023
+-- ## SQL pour la base de données MySQL de l'application Pat'Perdue
 
 
 
