@@ -2,12 +2,10 @@
 /*
     Paramètes de l'API (identifiant BDD, clé privée de l'API)
 */
-define('ENVIRONMENT', 'development');
-// define('ENVIRONMENT', 'production');
 
-$dbHost = '';
-$dbName = '';
-$dbUser = '';
+$dbHost = 'localhost';
+$dbName = 'ecvapi';
+$dbUser = 'root';
 $dbPassword = '';
 
 error_reporting(E_ALL);
