@@ -130,8 +130,8 @@ class Users {
                 return 2; // Erreur SQL
             }
 
-            $_SESSION['user']['group'] = $data['group_name'];
-            $_SESSION['user']['username'] = $data['user_username'];
+            // $_SESSION['user']['group'] = $data['group_name'];
+            // $_SESSION['user']['username'] = $data['user_username'];
             return 0; // Token créé et associé à l'utilisateur avec succès
 
         } catch(Exception $e) {

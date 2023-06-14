@@ -53,7 +53,7 @@ CREATE TABLE users (
     token VARCHAR(120),
     verification_code_email_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     creation_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    last_login DATETIME
+    last_login_date DATETIME
 );
 
 

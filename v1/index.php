@@ -13,7 +13,10 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
         // Pour obtenir seulement le token
         $headerToken = substr($authorizationHeader, 7);
     }
+} else {
+    $headerToken = '';
 }
+
 $allowed_methods = ["GET", "POST", "PUT", "DELETE"];
 
 if ($apiToken === $headerToken) {
