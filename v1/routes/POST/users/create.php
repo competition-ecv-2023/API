@@ -24,31 +24,37 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
             // Username don't match the regex
             header("HTTP/1.1 400 Bad Request");
             header("X-Error-Message: Le pseudo choisit n'est pas valide");
+            header("X-Error-Field: username");
             break;
         case 4:
             // Password don't match the regex
             header("HTTP/1.1 400 Bad Request");
             header("X-Error-Message: Les mots de passe ne sont pas conformes");
+            header("X-Error-Field: password");
             break;
         case 5:
             // Passwords don't match each other
             header("HTTP/1.1 400 Bad Request");
             header("X-Error-Message: Les mots de passe ne correspondent pas");
+            header("X-Error-Field: passwordToVerify");
             break;
         case 6:
             // Email not valid
             header("HTTP/1.1 400 Bad Request");
             header("X-Error-Message: L'adresse email n'est pas valide");
+            header("X-Error-Field: email");
             break;
         case 7:
             // Email already used
             header("HTTP/1.1 409 Conflict");
-            header("X-Error-Message: L'adresse email est deja utiliee par un autre compte");
+            header("X-Error-Message: L'adresse email est déjà utilisée par un autre compte");
+            header("X-Error-Field: email");
             break;
         case 8:
             // Username already used
             header("HTTP/1.1 409 Conflict");
             header("X-Error-Message: Le pseudo est déjà utilisé par un autre compte");
+            header("X-Error-Field: username");
             break;
         default;
             // error handler, something weird had occurred
