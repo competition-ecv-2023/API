@@ -27,7 +27,7 @@ if (isset($_POST['email']) && isset($_POST['passwordToVerify'])) {
             // User now logged
             header("HTTP/1.1 200 OK");
             header("X-Message: Connecte");
-            echo '[{"userToken":"'.$_SESSION["user"]["token"].',"id":'.$userId.'}]';
+            echo '[{"userToken":"'.$_SESSION["user"]["token"].'","id":'.$userId.'}]';
             break;
         case 1:
             // Error with the SQL
