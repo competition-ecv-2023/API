@@ -36,7 +36,7 @@ CREATE TABLE groups_permissions (
 
 
 -- #################################################################################
--- ### JOUEURS #####################################################################
+-- ### USERS #######################################################################
 
 -- Table users --
 DROP TABLE IF EXISTS users;
@@ -89,7 +89,11 @@ CREATE TABLE adverts (
     end_date DATETIME NOT NULL,
     is_premium TINYINT(1) NOT NULL DEFAULT 0,
     is_google_ads TINYINT(1) NOT NULL DEFAULT 0,
-    google_ads_time DATETIME
+    google_ads_time DATETIME,
+    latitude FLOAT NOT NULL,
+    longitude FLOAT NOT NULL,
+    radius FLOAT NOT NULL,
+    city VARCHAR(60) NOT NULL
 );
 
 
