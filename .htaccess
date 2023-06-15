@@ -20,6 +20,8 @@ Options -Indexes
 RewriteRule ^v1$ index.php?page=swagger [L]
 RewriteRule ^v1/users$ index.php?api=users [L]
 RewriteRule ^v1/users/([0-9]+)$ index.php?api=users&user_id=$1 [L]
+RewriteRule ^v1/adverts$ index.php?api=adverts [L]
+RewriteRule ^v1/adverts/([0-9]+)$ index.php?api=adverts&advert_id=$1 [L]
 RewriteRule ^v1/users/login$ index.php?api=users&login=1 [L]
 RewriteRule ^composer.json$ - [R=404,L]
 RewriteRule ^composer.lock$ - [R=404,L]
