@@ -24,22 +24,18 @@ if ($apiToken === $headerToken) {
             if($_GET['page'] == "swagger") {
             } else {
                 header("HTTP/1.1 404 Not Found");
-                header("X-Error-Message: 1");
             }
         } else if (isset($_GET["api"]) && in_array($request_method, $allowed_methods)) {
             if(file_exists($_SERVER['DOCUMENT_ROOT'].'/v1/routes/'.$request_method.'/'.$_GET['api'].'.php')) {
                 require $_SERVER['DOCUMENT_ROOT'].'/v1/routes/'.$request_method.'/'.$_GET['api'].'.php';
             } else {
                 header("HTTP/1.1 404 Not Found");
-                header("X-Error-Message: 2");
             }
         } else {
             header("HTTP/1.1 404 Not Found");
-            header("X-Error-Message: 3");
         }
     } else {
         header("HTTP/1.1 404 Not Found");
-        header("X-Error-Message: 4");
     }
 } else {
     header("HTTP/1.1 403 Forbidden");

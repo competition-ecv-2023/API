@@ -64,6 +64,9 @@ if (isset($_POST['email']) && isset($_POST['passwordToVerify'])) {
         if (!SQLManager::insertInto($table, $into, $values, $params)) {
             error_log("[controller/login.php] - SQL login_attempts error : table($table), into($into), values($values), params{:user_id($userId), :ip_address(".$_SERVER['REMOTE_ADDR']."), :attempt_result($result)}", 0);
         }
+        
+        header("HTTP/1.1 403 Forbidden");
+        header("X-Error-Message: Compte non existant");
     }
 } else {
     // missings data
