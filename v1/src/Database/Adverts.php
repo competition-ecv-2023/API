@@ -112,20 +112,4 @@ class Adverts {
             return 1; // Une erreur s'est produite
         }
     }
-    
-    public static function delete(
-        string $id
-    ) {
-    }
-
-    public static function update(
-        int $user_id,
-        string $title,
-        bool $is_premium,
-        bool $is_google_ads,
-        float $latitude,
-        float $longitude,
-        string $city
-    ) {
-    }
 }
