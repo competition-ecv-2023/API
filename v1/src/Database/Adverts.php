@@ -70,7 +70,7 @@ class Adverts {
             
             // Insère l'annonce dans la base de données
             if (SQLManager::insertInto($table, $into, $values, $params)) {
-                $advertId = SQLManager::getLastInsertedId(); // Récupère l'ID de l'annonce nouvellement créée
+                $advertId = SQLManager::getLastInsertedId($table); // Récupère l'ID de l'annonce nouvellement créée
         
                 // Parcourt chaque image pour les enregistrer
                 foreach ($images['tmp_name'] as $index => $tmpName) {
