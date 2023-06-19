@@ -69,24 +69,30 @@ class Adverts {
             $table = "adverts";
             $into = "(user_id, title, description, end_date, is_premium, is_google_ads, latitude, longitude, city)";
             $values = "(:user_id,:title,:description,:end_date,:is_premium,:is_google_ads,:latitude,:longitude,:city)";
+             
+            if (isset($images) && base64_decode($images[0], true) == true) {
+                // Insère l'annonce dans la base de données
+                if (SQLManager::insertInto($table, $into, $values, $params)) {
+                    $advertId = SQLManager::getLastInsertedId($table); // Récupère l'ID de l'annonce nouvellement créée
             
-            // Insère l'annonce dans la base de données
-            if (SQLManager::insertInto($table, $into, $values, $params)) {
-                $advertId = SQLManager::getLastInsertedId($table); // Récupère l'ID de l'annonce nouvellement créée
-        
-                // Parcourt chaque image pour les enregistrer
-                foreach ($images['tmp_name'] as $index => $tmpName) {
-                    $imageNumber = $index + 1;
-                    $filename = $imageNumber . '.jpg';
-                    $folderName = 'adverts_images/' . $advertId;
-                    $destination = $_SERVER['DOCUMENT_ROOT'] . '/storage/adverts_images/' . $folderName . '/' . $filename;
-        
-                    if (move_uploaded_file($tmpName, $destination)) {
+                    // Parcourt chaque image pour les enregistrer
+                    foreach ($images as $index => $base64Image) {
+                        $imageNumber = $index + 1;
+                        $filename = $imageNumber . '.webp';
+                        $folderName = 'adverts_images/' . $advertId;
+                        $destination = $_SERVER['DOCUMENT_ROOT'] . '/storage/adverts_images/' . $folderName . '/' . $filename;
+
+                        // Convertir l'image base64 en format WebP
+                        $imageData = base64_decode($base64Image);
+                        $image = imagecreatefromstring($imageData);
+                        imagewebp($image, $destination, 85);
+                        imagedestroy($image);
+
                         // Enregistrement de l'image réussi, vous pouvez faire ce que vous souhaitez avec l'image ici
                         // Par exemple, vous pouvez enregistrer le chemin de l'image dans la base de données pour référence future
                         $link = '/storage/' . $folderName . '/' . $filename;
                         $isMain = ($index === 0) ? 1 : 0; // Détermine si l'image est l'image principale
-        
+
                         // Enregistrement des informations de l'image dans la table "images"
                         $imageParams = array(
                             ':folder_name' => $folderName,
@@ -98,15 +104,15 @@ class Adverts {
                         $imageInto = "(folder_name, file_name, link, is_main)";
                         $imageValues = "(:folder_name, :file_name, :link, :is_main)";
                         SQLManager::insertInto($imageTable, $imageInto, $imageValues, $imageParams);
-                    } else {
-                        // Erreur lors de l'enregistrement de l'image
-                        return 5; // Code d'erreur pour l'échec de l'enregistrement de l'image
                     }
+            
+                    return 0; // L'annonce a été créée avec succès
+                } else {
+                    return 2; // Erreur de la base de données ou de la requête SQL
                 }
-        
-                return 0; // L'annonce a été créée avec succès
             } else {
-                return 2; // Erreur de la base de données ou de la requête SQL
+                // Erreur lors de l'enregistrement de l'image
+                return 5; // Code d'erreur pour l'échec de l'enregistrement de l'image
             }
         } catch(Exception $e) {
             // Journalise l'exception
