@@ -2,7 +2,7 @@
 include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/Adverts.php';
 use \Database\Adverts;
 
-// Create users
+// Create adverts
 if (isset($_POST['user_id']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['is_premium']) && isset($_POST['is_google_ads']) && isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['city']) && isset($_POST['images'])) {
     /**
      * - 0 si l'annonce a été créée avec succès
@@ -21,12 +21,12 @@ if (isset($_POST['user_id']) && isset($_POST['title']) && isset($_POST['descript
         case 1:
             // Exception
             header("HTTP/1.1 500 Internal Server Error");
-            header("X-Error-Message: Une erreur s'est produite [Ad_1eIn]");
+            header("X-Error-Message: Une erreur s'est produite [AdP_1eIn]");
             break;
         case 2:
             // SQL error
             header("HTTP/1.1 500 Internal Server Error");
-            header("X-Error-Message: Une erreur s'est produite [Ad_2eIn]");
+            header("X-Error-Message: Une erreur s'est produite [AdP_2eIn]");
             break;
         case 3:
             // Username don't match the regex
@@ -46,7 +46,7 @@ if (isset($_POST['user_id']) && isset($_POST['title']) && isset($_POST['descript
         default;
             // error handler, something weird had occurred
             header("HTTP/1.1 500 Internal Server Error");
-            header("X-Error-Message: Une erreur s'est produite [Ad_?Def]");
+            header("X-Error-Message: Une erreur s'est produite [AdP_?Def]");
             break;
     }        
 } else {

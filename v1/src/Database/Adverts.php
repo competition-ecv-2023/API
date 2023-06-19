@@ -112,4 +112,42 @@ class Adverts {
             return 1; // Une erreur s'est produite
         }
     }
+
+    /**
+     * Supprime une annonce existant dans la table adverts avec l'identifiant spécifié.
+     *
+     * @param int $id L'identifiant de l'annonce à supprimer.
+     * @return int Le code de statut :
+     * - 0 si l'annonce a été supprimée avec succès
+     * - 1 si une erreur s'est produite lors de l'exécution de la fonction
+     * - 2 si une erreur s'est produite lors de l'exécution de la requête SQL
+     * - 3 si l'annonce n'existe pas
+     */
+    public static function delete (
+        $id
+    ) {
+        try {
+            // Vérifie si l'annonce existe
+            $data = SQLManager::findBy('id, title', 'adverts', 'id = :id', array(':id' => $id));
+            if (!isset($data['title'])) {
+                return 3; // Article non existant
+            }
+            // Supprime l'article de la table
+            $table = "adverts";
+            $set = "is_deleted = :is_deleted";
+            $where = "id = :id";
+            $params = array(
+                ':is_deleted' => 1,
+                ':id' => $id
+            );
+            if (!SQLManager::update($table, $set, $where, $params)) {
+                return 2; // Erreur SQL
+            }
+            return 0; // Article supprimé avec succès
+        } catch(Exception $e) {
+            // Journalise l'exception
+            error_log("[Adverts.php] - Adverts::delete Exception : $e", 0);
+            return 1; // Une erreur s'est produite
+        }        
+    }
 }
