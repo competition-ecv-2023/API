@@ -83,8 +83,10 @@ CREATE TABLE adverts (
     id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	user_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),  
-    title VARCHAR(32) NOT NULL,
-    description VARCHAR(800) NOT NULL,
+    animal_type VARCHAR(32) NOT NULL,
+    animal_name VARCHAR(32) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    city VARCHAR(60) NOT NULL,
     start_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     end_date DATETIME NOT NULL,
     is_premium TINYINT(1) NOT NULL DEFAULT 0,
@@ -93,7 +95,6 @@ CREATE TABLE adverts (
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
     radius FLOAT NOT NULL,
-    city VARCHAR(60) NOT NULL,
     is_deleted TINYINT(1) NOT NULL DEFAULT 0
 );
 

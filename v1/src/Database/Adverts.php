@@ -27,13 +27,14 @@ class Adverts {
      * - 0 si l'annonce a été créée avec succès
      * - 1 si une erreur s'est produite lors de l'exécution de la fonction
      * - 2 si une erreur s'est produite lors de l'exécution de la requête SQL ou de la base de données
-     * - 3 si le titre de l'annonce n'est pas conforme
-     * - 4 si la description de l'annonce n'est pas conforme
+     * - 3 si le type de l'animal de l'annonce n'est pas conforme
+     * - 4 si le nom de l'animal de l'annonce n'est pas conforme
      * - 5 si une erreur s'est produite lors de l'enregistrement d'une image associée à l'annonce
      */
     public static function create(
         int $user_id,
-        string $title,
+        string $animal_type,
+        string $animal_name,
         string $description,
         bool $is_premium,
         bool $is_google_ads,
@@ -44,18 +45,19 @@ class Adverts {
     ) {
         try {
             // Vérifie la conformité du titre de l'annonce
-            if (!(strlen($title) >= 8 && strlen($title) <= 32)) {
-                return 3; // Le titre n'est pas conforme
+            if (!(strlen($animal_type) >= 1 && strlen($animal_type) <= 32)) {
+                return 3; // Le type de l'animal n'est pas conforme
             }
             // Vérifie la conformité de la description de l'annonce
-            if (!(strlen($description) >= 10 && strlen($description) <= 800)) {
-                return 4; // La description n'est pas conforme
+            if (!(strlen($animal_name) >= 1 && strlen($animal_name) <= 32)) {
+                return 4; // Le nom de l'animal n'est pas conforme
             }
         
             $end_date = strtotime("+7 days");
             $params = array(
                 ':user_id' => $user_id,
-                ':title' => $title,
+                ':animal_type' => $animal_type,
+                ':animal_name' => $animal_name,
                 ':description' => $description,
                 ':end_date' => $end_date,
                 ':is_premium' => $is_premium,

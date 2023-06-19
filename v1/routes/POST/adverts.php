@@ -3,16 +3,16 @@ include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/Adverts.php';
 use \Database\Adverts;
 
 // Create adverts
-if (isset($_POST['user_id']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['is_premium']) && isset($_POST['is_google_ads']) && isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['city']) && isset($_POST['images'])) {
+if (isset($_POST['user_id']) && isset($_POST['animal_type']) && isset($_POST['animal_name']) && isset($_POST['description']) && isset($_POST['is_premium']) && isset($_POST['is_google_ads']) && isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['city']) && isset($_POST['images'])) {
     /**
      * - 0 si l'annonce a été créée avec succès
      * - 1 si une erreur s'est produite lors de l'exécution de la fonction
      * - 2 si une erreur s'est produite lors de l'exécution de la requête SQL ou de la base de données
-     * - 3 si le titre de l'annonce n'est pas conforme
-     * - 4 si la description de l'annonce n'est pas conforme
+     * - 3 si le type de l'animal de l'annonce n'est pas conforme
+     * - 4 si le nom de l'animal de l'annonce n'est pas conforme
      * - 5 si une erreur s'est produite lors de l'enregistrement d'une image associée à l'annonce
      */
-    switch(Adverts::create($_POST['user_id'], $_POST['title'], $_POST['description'], $_POST['is_premium'], $_POST['is_google_ads'], $_POST['latitude'], $_POST['longitude'], $_POST['city'], $_POST['images'])) {
+    switch(Adverts::create($_POST['user_id'], $_POST['animal_type'], $_POST['animal_name'], $_POST['description'], $_POST['is_premium'], $_POST['is_google_ads'], $_POST['latitude'], $_POST['longitude'], $_POST['city'], $_POST['images'])) {
         case 0:
             // Register done
             header("HTTP/1.1 200 OK");
@@ -31,12 +31,12 @@ if (isset($_POST['user_id']) && isset($_POST['title']) && isset($_POST['descript
         case 3:
             // Username don't match the regex
             header("HTTP/1.1 400 Bad Request");
-            header("X-Error-Message: Titre de l'annonce non conforme");
+            header("X-Error-Message: Le type de l'animal est non conforme");
             break;
         case 4:
             // Password don't match the regex
             header("HTTP/1.1 400 Bad Request");
-            header("X-Error-Message: Description de l'annonce non conforme");
+            header("X-Error-Message: Le nom de l'animal est non conforme");
             break;
         case 5:
             // Passwords don't match each other
