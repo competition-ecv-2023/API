@@ -67,8 +67,8 @@ class Adverts {
                 ':city' => $city,
             );
             $table = "adverts";
-            $into = "(user_id, title, description, end_date, is_premium, is_google_ads, latitude, longitude, city)";
-            $values = "(:user_id,:title,:description,:end_date,:is_premium,:is_google_ads,:latitude,:longitude,:city)";
+            $into = "(user_id, animal_type, animal_name, description, end_date, is_premium, is_google_ads, latitude, longitude, city)";
+            $values = "(:user_id,:animal_type,:animal_name,:description,:end_date,:is_premium,:is_google_ads,:latitude,:longitude,:city)";
              
             if (isset($images) && base64_decode($images[0], true) == true) {
                 // Insère l'annonce dans la base de données
