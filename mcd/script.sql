@@ -93,7 +93,8 @@ CREATE TABLE adverts (
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
     radius FLOAT NOT NULL,
-    city VARCHAR(60) NOT NULL
+    city VARCHAR(60) NOT NULL,
+    is_deleted TINYINT(1) NOT NULL DEFAULT 0
 );
 
 

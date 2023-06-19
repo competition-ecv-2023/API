@@ -1,6 +1,6 @@
 <?php
-require 'vendor/autoload.php';
-require 'v1/config/settings.php';
+require $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'].'/v1/config/settings.php';
 
 use Api\ApiHandler;
 
@@ -37,6 +37,8 @@ if ($apiToken === $headerToken) {
     } else {
         header("HTTP/1.1 404 Not Found");
     }
+} else if (isset($_GET['page']) && $_GET['page'] == "swagger") {
+    require($_SERVER['DOCUMENT_ROOT'].'./v1/swagger/index.html');
 } else {
     header("HTTP/1.1 403 Forbidden");
 }

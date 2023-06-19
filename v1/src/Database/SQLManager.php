@@ -110,6 +110,27 @@ class SQLManager {
     }
 
     /**
+     * Récupère l'ID du dernier enregistrement inséré dans une table
+     *
+     * @param string $table Le nom de la table dans laquelle récupérer l'ID
+     * @return int|null L'ID du dernier enregistrement inséré, ou null en cas d'erreur
+     */
+    public static function getLastInsertedId($table) {
+        try {
+            $db = DatabaseHandler::getInstance();
+            $pdo = $db->getPDO();
+            $sql = "SELECT LAST_INSERT_ID() AS last_id FROM $table";
+            $stmt = $pdo->query($sql);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $db->close();
+            return $result !== false ? $result['last_id'] : null;
+        } catch (Exception $e) {
+            error_log("[SQLManager.php] - SQLManager::getLastInsertedId Exception: $e", 0);
+            return null;
+        }
+    }
+
+    /**
      * Supprime des lignes d'une table de la base de données en fonction d'une condition donnée
      *
      * @param string $table Le nom de la table dans laquelle supprimer les lignes
