@@ -53,7 +53,7 @@ class Adverts {
                 return 4; // Le nom de l'animal n'est pas conforme
             }
         
-            $end_date = strtotime("+7 days");
+            $end_date = date('Y-m-d H:i:s', strtotime("+7 days"));
             $params = array(
                 ':user_id' => $user_id,
                 ':animal_type' => $animal_type,
