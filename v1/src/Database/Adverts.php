@@ -95,16 +95,16 @@ class Adverts {
                         $isMain = ($index === 0) ? 1 : 0; // Détermine si l'image est l'image principale
 
                         // Enregistrement des informations de l'image dans la table "images"
-                        $imageParams = array(
+                        $params = array(
                             ':folder_name' => $folderName,
                             ':file_name' => $filename,
                             ':link' => $link,
                             ':is_main' => $isMain,
                         );
-                        $imageTable = "images";
-                        $imageInto = "(folder_name, file_name, link, is_main)";
-                        $imageValues = "(:folder_name, :file_name, :link, :is_main)";
-                        SQLManager::insertInto($imageTable, $imageInto, $imageValues, $imageParams);
+                        $table = "images";
+                        $into = "(folder_name, file_name, link, is_main)";
+                        $values = "(:folder_name, :file_name, :link, :is_main)";
+                        SQLManager::insertInto($table, $into, $values, $params);
                     }
             
                     return 0; // L'annonce a été créée avec succès
