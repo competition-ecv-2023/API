@@ -120,6 +120,7 @@ class SQLManager {
             $db = DatabaseHandler::getInstance();
             $pdo = $db->getPDO();
             return $pdo->lastInsertId();
+            $db->close();
         } catch (Exception $e) {
             error_log("[SQLManager.php] - SQLManager::getLastInsertedId Exception: $e", 0);
             return null;
