@@ -91,7 +91,7 @@ class Adverts {
 
                         // Enregistrement de l'image réussi, vous pouvez faire ce que vous souhaitez avec l'image ici
                         // Par exemple, vous pouvez enregistrer le chemin de l'image dans la base de données pour référence future
-                        $link = '/storage/' . $folderName . '/' . $filename;
+                        $link = '/storage/adverts_images/' . $folderName . '/' . $filename;
                         $isMain = ($index === 0) ? 1 : 0; // Détermine si l'image est l'image principale
 
                         // Enregistrement des informations de l'image dans la table "images"
