@@ -79,7 +79,8 @@ class Adverts {
                     foreach ($images as $index => $base64Image) {
                         $imageNumber = $index + 1;
                         $filename = $imageNumber . '.webp';
-                        $folderName = 'adverts_images/' . $advertId;
+                        $folderName = $advertId;
+                        mkdir($_SERVER['DOCUMENT_ROOT'] . '/storage/adverts_images/' . $folderName . '/', 0777);
                         $destination = $_SERVER['DOCUMENT_ROOT'] . '/storage/adverts_images/' . $folderName . '/' . $filename;
 
                         // Convertir l'image base64 en format WebP
