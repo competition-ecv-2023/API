@@ -119,11 +119,7 @@ class SQLManager {
         try {
             $db = DatabaseHandler::getInstance();
             $pdo = $db->getPDO();
-            $sql = "SELECT LAST_INSERT_ID() AS last_id FROM $table";
-            $stmt = $pdo->query($sql);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $db->close();
-            return $result !== false ? $result['last_id'] : null;
+            return $pdo->lastInsertId();
         } catch (Exception $e) {
             error_log("[SQLManager.php] - SQLManager::getLastInsertedId Exception: $e", 0);
             return null;
