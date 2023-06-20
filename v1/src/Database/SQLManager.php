@@ -119,9 +119,9 @@ class SQLManager {
         try {
             $db = DatabaseHandler::getInstance();
             $pdo = $db->getPDO();
-            $result = SQLManager::findBy("id",":table","ORDER BY id DESC LIMIT 1", array(':table' => $table));
+            $result = SQLManager::findAll("id","$table ORDER BY id DESC LIMIT 1");
             $db->close();
-            return $result;
+            return $result['id'];
         } catch (Exception $e) {
             error_log("[SQLManager.php] - SQLManager::getLastInsertedId Exception: $e", 0);
             return null;
