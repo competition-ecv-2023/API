@@ -105,6 +105,17 @@ class Adverts {
                         $into = "(folder_name, file_name, link, is_main)";
                         $values = "(:folder_name, :file_name, :link, :is_main)";
                         SQLManager::insertInto($table, $into, $values, $params);
+
+                        // Enregistrement des informations de l'image dans la table "adverts_images"
+                        $imageId = SQLManager::getLastInsertedId($table);
+                        $params = array(
+                            ':advert_id' => $advertId,
+                            ':image_id' => $imageId
+                        );
+                        $table = "adverts_images";
+                        $into = "(advert_id, image_id)";
+                        $values = "(:advert_id, :image_id)";
+                        SQLManager::insertInto($table, $into, $values, $params);
                     }
             
                     return 0; // L'annonce a été créée avec succès
