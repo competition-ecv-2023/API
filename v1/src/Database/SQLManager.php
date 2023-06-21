@@ -2,7 +2,12 @@
 namespace Database;
 use \PDO;
 
-include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/DatabaseHandler.php';
+// Si on lance les tests unitaires la variable $_SERVEUR n'existe pas
+if (!$_SERVER['DOCUMENT_ROOT']) {
+    include 'v1/src/Database/DatabaseHandler.php';
+} else {
+    include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/DatabaseHandler.php';
+}
 use \Database\DatabaseHandler;
 use Exception;
 

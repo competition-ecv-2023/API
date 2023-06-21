@@ -3,10 +3,15 @@ namespace Database;
 use \PDO;
 use \Exception;
 
-include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/SQLManager.php';
+// Si on lance les tests unitaires la variable $_SERVEUR n'existe pas
+if (!$_SERVER['DOCUMENT_ROOT']) {
+    include 'v1/src/Database/SQLManager.php';
+    include 'v1/src/Mail/Mail.php';
+} else {
+    include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/SQLManager.php';    
+    include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Mail/Mail.php';
+}
 use \Database\SQLManager;
-
-include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Mail/Mail.php';
 use \Mail\Mail;
 
 /**

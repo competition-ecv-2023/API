@@ -16,7 +16,12 @@ class DatabaseHandler {
      */
     private function __construct()
     {
-        include $_SERVER['DOCUMENT_ROOT'].'/v1/config/settings.php';
+        // Si on lance les tests unitaires la variable $_SERVEUR n'existe pas
+        if (!$_SERVER['DOCUMENT_ROOT']) {
+            include 'v1/config/settings.php';
+        } else {
+            include $_SERVER['DOCUMENT_ROOT'].'/v1/config/settings.php';
+        }
         $this->pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
         $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

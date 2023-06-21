@@ -8,7 +8,11 @@ use PHPMailer\PHPMailer\Exception;
 
 
 //Load Composer's autoloader
-include $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+if (!$_SERVER['DOCUMENT_ROOT']) {
+    include 'vendor/autoload.php';
+} else {
+    include $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+}
 
 
 class Mail {
