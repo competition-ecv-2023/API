@@ -35,6 +35,9 @@ class Adverts {
         int $user_id,
         string $animal_type,
         string $animal_name,
+        string $animal_breed,
+        string $animal_age,
+        string $animal_sex,
         string $description,
         bool $is_premium,
         bool $is_google_ads,
@@ -58,6 +61,9 @@ class Adverts {
                 ':user_id' => $user_id,
                 ':animal_type' => $animal_type,
                 ':animal_name' => $animal_name,
+                ':animal_breed' => $animal_breed,
+                ':animal_age' => $animal_age,
+                ':animal_sex' => $animal_sex,
                 ':description' => $description,
                 ':end_date' => $end_date,
                 ':is_premium' => $is_premium,
@@ -67,8 +73,8 @@ class Adverts {
                 ':city' => $city,
             );
             $table = "adverts";
-            $into = "(user_id, animal_type, animal_name, description, end_date, is_premium, is_google_ads, latitude, longitude, city)";
-            $values = "(:user_id,:animal_type,:animal_name,:description,:end_date,:is_premium,:is_google_ads,:latitude,:longitude,:city)";
+            $into = "(user_id, animal_type, animal_name, animal_breed, animal_age, animal_sex, description, end_date, is_premium, is_google_ads, latitude, longitude, city)";
+            $values = "(:user_id,:animal_type,:animal_name,:animal_breed,:animal_age,:animal_sex,:description,:end_date,:is_premium,:is_google_ads,:latitude,:longitude,:city)";
              
             if (isset($images) && base64_decode($images[0], true) == true) {
                 // Insère l'annonce dans la base de données

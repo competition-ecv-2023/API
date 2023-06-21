@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/v1/src/Database/Adverts.php';
 use \Database\Adverts;
 
 // Create adverts
-if (isset($_POST['user_id']) && isset($_POST['animal_type']) && isset($_POST['animal_name']) && isset($_POST['description']) && isset($_POST['is_premium']) && isset($_POST['is_google_ads']) && isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['city']) && isset($_POST['images'])) {
+if (isset($_POST['user_id']) && isset($_POST['animal_type']) && isset($_POST['animal_name']) && isset($_POST['animal_breed']) && isset($_POST['animal_age']) && isset($_POST['animal_sex']) && isset($_POST['description']) && isset($_POST['is_premium']) && isset($_POST['is_google_ads']) && isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['city']) && isset($_POST['images'])) {
     /**
      * - 0 si l'annonce a été créée avec succès
      * - 1 si une erreur s'est produite lors de l'exécution de la fonction
@@ -12,7 +12,7 @@ if (isset($_POST['user_id']) && isset($_POST['animal_type']) && isset($_POST['an
      * - 4 si le nom de l'animal de l'annonce n'est pas conforme
      * - 5 si une erreur s'est produite lors de l'enregistrement d'une image associée à l'annonce
      */
-    switch(Adverts::create($_POST['user_id'], $_POST['animal_type'], $_POST['animal_name'], $_POST['description'], $_POST['is_premium'], $_POST['is_google_ads'], $_POST['latitude'], $_POST['longitude'], $_POST['city'], $_POST['images'])) {
+    switch(Adverts::create($_POST['user_id'], $_POST['animal_type'], $_POST['animal_name'], $_POST['animal_breed'], $_POST['animal_age'], $_POST['animal_sex'], $_POST['description'], $_POST['is_premium'], $_POST['is_google_ads'], $_POST['latitude'], $_POST['longitude'], $_POST['city'], $_POST['images'])) {
         case 0:
             // Register done
             header("HTTP/1.1 200 OK");
