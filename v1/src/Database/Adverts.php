@@ -154,8 +154,8 @@ class Adverts {
     ) {
         try {
             // Vérifie si l'annonce existe
-            $data = SQLManager::findBy('id, title', 'adverts', 'id = :id', array(':id' => $id));
-            if (!isset($data['title'])) {
+            $data = SQLManager::findBy('id, animal_name', 'adverts', 'id = :id', array(':id' => $id));
+            if (!isset($data['animal_name'])) {
                 return 3; // Article non existant
             }
             // Supprime l'article de la table
